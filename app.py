@@ -221,7 +221,7 @@ def handle_upload():
 
             except Exception as e:
                 st.write(
-                    f'Yo, Layla! Error. Check {file.name}')
+                    f'Yo, Layla! Error. Check {file.name}. Specifically, {e}')
                 continue
 
         # Create a ZipFile object to store individual Excel files
