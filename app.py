@@ -42,7 +42,7 @@ st.markdown(hide_default_format, unsafe_allow_html=True)
 
 # main title
 st.markdown(
-    "<p style='color:#000000; font-weight: 900; font-size: 46px'>ABI Excel Cleaning Robot</p>", unsafe_allow_html=True)
+    "<p style='color:#000000; font-weight: 900; font-size: 46px'>Excel Cleaning Robot</p>", unsafe_allow_html=True)
 
 st.write("")
 st.write("")
@@ -201,8 +201,6 @@ def handle_upload():
         accept_multiple_files=True
     )
 
-    number_of_files = len(uploaded_files)
-
     cleaned_dataframes = {}
 
     if uploaded_files:
@@ -221,17 +219,21 @@ def handle_upload():
                 cleaned_dataframes[filename] = cleaned_df
 
             except Exception as e:
-                st.write(
-                    f'Yo, Layla! Error. Check {file.name}. Specifically, {e}')
+                st.markdown(
+                    f"<p style='color:#8B0000; font-weight: 200; font-size: 14px'><b>Yo, Layla!</b> I found an error with the file {file.name}. If you're curious, the error is: {e}.</p>",
+                    unsafe_allow_html=True
+                )
                 continue
 
         # Create a ZipFile object to store individual Excel files
         est_timezone = pytz.timezone("US/Eastern")
         timestamp = datetime.now(est_timezone).strftime("%m-%d-%Y_%I.%M%p")
         zip_file_name = f"cleaned_files_{timestamp}.zip"
-        st.write(timestamp)
 
         buffer_zip = io.BytesIO()
+
+        # instantiate a variable to keep track of the number of files to be included in the Zip file
+        number_of_files = 0
 
         # Create a ZipFile object to store individual Excel files
         with zipfile.ZipFile(buffer_zip, 'w') as zip_file:
@@ -268,12 +270,14 @@ def handle_upload():
                 zip_file.writestr(
                     f'{filename}.xlsx', excel_file.read())
 
+                number_of_files += 1  # increment the number of files
+
         # Close the ZipFile and output the zip file to the buffer
         buffer_zip.seek(0)
 
         # show user how many files were uploaded
         st.markdown(
-            f"<p style='color:#000000; font-weight: 600; font-size: 18px'><em>Total files uploaded: {number_of_files}</em></p>", unsafe_allow_html=True)
+            f"<p style='color:#000000; font-weight: 600; font-size: 18px'><em>Total validated files ready for processing: {number_of_files}</em></p>", unsafe_allow_html=True)
 
         st.download_button(
             label="Clean & download as zip",
