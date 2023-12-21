@@ -31,7 +31,7 @@ hide_default_format = """
                 } 
             [data-testid="stDecoration"] {
                 background-image: linear-gradient(90deg, rgb(25, 130, 196), rgb(25, 130, 196));
-                height: 20%;
+                height: 35%;
                 }
             div.stActionButton{visibility: hidden;}
         </style>
@@ -43,6 +43,10 @@ st.markdown(hide_default_format, unsafe_allow_html=True)
 # main title
 st.markdown(
     "<p style='color:#000000; font-weight: 900; font-size: 46px'>Excel Cleaning Robot</p>", unsafe_allow_html=True)
+
+# sub title
+st.markdown(
+    "<p style='color:#000000; font-weight: 400; font-size: 20px'><em>This friendly user interface provides an automated workflow for cleaning ABI invoices. Put this robot to work!</em></p>", unsafe_allow_html=True)
 
 st.write("")
 st.write("")
@@ -220,7 +224,7 @@ def handle_upload():
 
             except Exception as e:
                 st.markdown(
-                    f"<p style='color:#8B0000; font-weight: 200; font-size: 14px'><b>Yo, Layla!</b> I found an error with the file {file.name}. If you're curious, the error is: {e}.</p>",
+                    f"<p style='color:#8B0000; font-weight: 200; font-size: 14px'><b>Yo, Layla!</b> I found an error with the following file: <u>{file.name}</u>. If you're curious, the error is: {e}.</p>",
                     unsafe_allow_html=True
                 )
                 continue
@@ -280,7 +284,7 @@ def handle_upload():
             f"<p style='color:#000000; font-weight: 600; font-size: 18px'><em>Total validated files ready for processing: {number_of_files}</em></p>", unsafe_allow_html=True)
 
         st.download_button(
-            label="Clean & download as zip",
+            label="Process & download as zip",
             data=buffer_zip,
             file_name=zip_file_name,
             mime="application/zip"
