@@ -229,6 +229,7 @@ def handle_upload():
         est_timezone = pytz.timezone("US/Eastern")
         timestamp = datetime.now(est_timezone).strftime("%m-%d-%Y_%I.%M%p")
         zip_file_name = f"cleaned_files_{timestamp}.zip"
+        st.write(timestamp)
 
         buffer_zip = io.BytesIO()
 
@@ -275,7 +276,7 @@ def handle_upload():
             f"<p style='color:#000000; font-weight: 600; font-size: 18px'><em>Total files uploaded: {number_of_files}</em></p>", unsafe_allow_html=True)
 
         st.download_button(
-            label="Clean & download to zip",
+            label="Clean & download as zip",
             data=buffer_zip,
             file_name=zip_file_name,
             mime="application/zip"
