@@ -1,1 +1,1 @@
-# abi_automation
+# GitHub repo for ABI Excel automation project.
