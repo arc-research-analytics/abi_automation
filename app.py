@@ -4,6 +4,7 @@ import math
 import io
 import zipfile
 from datetime import datetime
+import pytz
 
 
 # set page configurations
@@ -225,7 +226,8 @@ def handle_upload():
                 continue
 
         # Create a ZipFile object to store individual Excel files
-        timestamp = datetime.now().strftime("%m-%d-%Y_%I.%M%p")
+        est_timezone = pytz.timezone("US/Eastern")
+        timestamp = datetime.now(est_timezone).strftime("%m-%d-%Y_%I.%M%p")
         zip_file_name = f"cleaned_files_{timestamp}.zip"
 
         buffer_zip = io.BytesIO()
