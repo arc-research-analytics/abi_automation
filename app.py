@@ -281,10 +281,10 @@ def handle_upload():
 
         # show user how many files were uploaded
         st.markdown(
-            f"<p style='color:#000000; font-weight: 600; font-size: 18px'><em>Total validated files ready for processing: {number_of_files}</em></p>", unsafe_allow_html=True)
+            f"<p style='color:#000000; font-weight: 600; font-size: 18px'><em>Total files processed: {number_of_files}</em></p>", unsafe_allow_html=True)
 
         st.download_button(
-            label="Process & download as zip",
+            label="Download as zip folder",
             data=buffer_zip,
             file_name=zip_file_name,
             mime="application/zip"
