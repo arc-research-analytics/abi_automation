@@ -5,6 +5,7 @@ import io
 import zipfile
 from datetime import datetime
 import pytz
+from PIL import Image
 
 
 # set page configurations
@@ -30,7 +31,7 @@ hide_default_format = """
                 display: none;
                 } 
             [data-testid="stDecoration"] {
-                background-image: linear-gradient(90deg, rgb(25, 130, 196), rgb(25, 130, 196));
+                background-image: linear-gradient(90deg, rgb(0,92,185), rgb(0,92,185));
                 height: 35%;
                 }
             div.stActionButton{visibility: hidden;}
@@ -292,3 +293,11 @@ def handle_upload():
 
 
 handle_upload()
+
+# draw logo at lower-right corner of dashboard
+st.write("")
+st.write("")
+st.write("")
+col1, col2 = st.columns([3, 1])
+im = Image.open('Content/abi_2.png')
+col2.image(im, width=175)
