@@ -202,7 +202,7 @@ def clean_dataframe(df):
 def handle_upload():
 
     uploaded_files = st.file_uploader(
-        label="Upload excel file(s) to be cleaned",
+        label="Upload Excel file(s) to be processed.",
         accept_multiple_files=True
     )
 
@@ -300,4 +300,4 @@ st.write("")
 st.write("")
 col1, col2 = st.columns([3, 1])
 im = Image.open('Content/abi_2.png')
-col2.image(im, width=175)
+col2.image(im, width=150)
