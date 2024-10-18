@@ -202,7 +202,7 @@ def clean_dataframe(df):
 def handle_upload():
 
     uploaded_files = st.file_uploader(
-        label="Upload Excel file(s) to be processed.",
+        label="Upload Excel file(s) to be processed:",
         accept_multiple_files=True
     )
 
